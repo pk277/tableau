@@ -1,0 +1,129 @@
+<html>
+<head>
+	<title>Tableau</title>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript">
+		function swapImages() {
+			var $active = $('#tableauDiagram .active');
+			var $next = ($('#tableauDiagram .active').next().length > 0) ? $('#tableauDiagram .active').next() : $('#tableauDiagram img:first');
+			$next.fadeIn(function() {         
+				$active.removeClass('active');
+				$next.addClass('active');
+				$active.fadeOut();
+			})
+		}
+
+		$(document).ready(function() {
+			// var height = $(window).height();
+			// var width = $(window).width();
+			// var size = width + ',' + height;
+
+			var locations = [
+				// Public Tableau data
+				// {"src": "https://public.tableausoftware.com/views/Animated-Map/map?:showVizHome=no&:embed=yes&:toolbar=no&:format=png&Year=2011"},
+				// {"src": "https://public.tableausoftware.com/views/Animated-Map/map?:showVizHome=no&:embed=yes&:toolbar=no&:format=png&Year=2012"},
+				// {"src": "https://public.tableausoftware.com/views/Animated-Map/map?:showVizHome=no&:embed=yes&:toolbar=no&:format=png&Year=2013"}
+
+				// Local data (aka screenshots)
+				{'src': 'screens/1.png'},
+				{'src': 'screens/2.png'},
+				{'src': 'screens/3.png'},
+				{'src': 'screens/4.png'},
+				{'src': 'screens/5.png'},
+				{'src': 'screens/6.png'},
+				{'src': 'screens/7.png'},
+				{'src': 'screens/8.png'},
+				{'src': 'screens/9.png'},
+				{'src': 'screens/10.png'},
+				{'src': 'screens/11.png'},
+				{'src': 'screens/12.png'},
+				{'src': 'screens/13.png'},
+				{'src': 'screens/14.png'},
+				{'src': 'screens/15.png'},
+				{'src': 'screens/16.png'},
+				{'src': 'screens/17.png'},
+				{'src': 'screens/18.png'},
+				{'src': 'screens/19.png'},
+				{'src': 'screens/20.png'},
+				{'src': 'screens/21.png'},
+				{'src': 'screens/22.png'},
+				{'src': 'screens/23.png'},
+				{'src': 'screens/24.png'}
+			]
+
+			//set tableauDiagram
+			// $("#tableauDiagram").attr('width',width);
+			// $("#tableauDiagram").attr('height',height);
+
+			var img = '';
+
+			locations.forEach(function(element, index, array) {
+				// Public Tableau data
+				// if (index == 0) {
+				// 	img = '<img src="' + locations[index].src + '" class="active" />';
+				// } else {
+				// 	img = '<img src="' + locations[index].src + '" />';    
+				// }
+
+				// Local data
+				if (index == 0) {
+					img = '<img src="' + locations[index].src + '" class="active" />';
+				} else {
+					img = '<img src="' + locations[index].src + '" />';    
+				}
+
+				console.log('index: ' + index + ' == ' + img);
+
+				$(img).appendTo("#tableauDiagram");
+			})
+
+			// Run our swapImages() function every 3 secs
+			setInterval('swapImages()', 3000)
+		})
+	</script>
+	<style>
+		body {
+			background-color: #fff;
+			width: 100vw;
+			height: 100vh;
+		}
+
+		.header {
+			background-color: #fff;
+			height: 60px;
+			margin: 20px 20px 0;
+		}
+
+		.logo {
+			max-width: 180px;
+		}
+
+		#tableauDiagram{
+			position: relative;
+			width: calc(100% - 20px);
+			height: calc(100% - 80px);
+			margin: 0 auto;
+		}
+
+		#tableauDiagram img {
+			display: none;
+			position: absolute;
+			width: auto;
+			height: auto;
+			max-width: 100%;
+			max-height: 100%;
+		}
+
+		#tableauDiagram img.active{
+			display: block;
+		}		
+	</style>
+</head>
+<body>
+	<div class="header">
+		<img class="logo" src="img/experian-logo.svg">
+	</div>
+	<div id="tableauDiagram">
+	</div>
+</body>
+</html>
